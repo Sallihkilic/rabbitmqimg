@@ -1,11 +1,6 @@
 <h1><strong>RabbitMq  Best Practices <strong></h1><br>
 
 
-
-
-
-
-<br>
 <br>
 
 <h2 style=color:red;><storng>Clustering and Network Partitions</strong><h2>
@@ -23,11 +18,27 @@
 
 <p style=font-size:15px;> Partition'lar loglar, HTTP API veya CLI command lar ile belirleneblir.</p>
 
-<p> <i>rabbitmq-diagnostics cluster_status </i>normalde partitonlar için boş bir liste gösterir.
+<p style=font-size:15px;> <i>rabbitmq-diagnostics cluster_status </i>normalde partitonlar için boş bir liste gösterir.
 
-[](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/2023-03-16%2007_21_33-Clustering%20and%20Network%20Partitions%20%E2%80%94%20RabbitMQ.png)
+![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/2023-03-16%2007_21_33-Clustering%20and%20Network%20Partitions%20—%20RabbitMQ.png?raw=true)
 
 
+<p style=font-size:15px;> Ancak Network Partition oluşmuşsa partiton lar ile ilgili bilgiler böyle gözükecektir.</p>
 
+
+![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/2023-03-16%2007_45_47-Clustering%20and%20Network%20Partitions%20—%20RabbitMQ.png?raw=true)
+
+
+<p style=font-size:15px;>The HTTP API will return partition information for each node under partitions in GET /api/nodes endpoints.
+
+The management UI will show a warning on the overview page if a partition has occurred.
+
+ </p>
+
+<h3 style=color:#902550;>
+<strong>2. NETWORK PARTITION SIRASINDA DAVRANIŞ</strong><h3>
+<br>
+
+<p> </p>
 
 
