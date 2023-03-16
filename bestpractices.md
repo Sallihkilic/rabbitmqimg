@@ -1,6 +1,6 @@
 <h1><strong>RabbitMq  Best Practices <strong></h1><br>
 
-
+![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/baslik.png?raw=true)
 <br>
 
 <h2 style=color:red;><storng>Clustering and Network Partitions</strong><h2>
@@ -18,7 +18,7 @@
 
 <p style=font-size:15px;> Partition'lar loglar, HTTP API veya CLI command lar ile belirleneblir.</p>
 
-<p style=font-size:15px;> <i>  <code>rabbitmq-diagnostics cluster_status</code> </i>normalde partitonlar için boş bir liste gösterir.
+<p style=font-size:15px;> <i> <code>rabbitmq-diagnostics cluster_status</code> </i>normalde partitonlar için boş bir liste gösterir.
 
 ![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/2023-03-16%2007_21_33-Clustering%20and%20Network%20Partitions%20—%20RabbitMQ.png?raw=true)
 
