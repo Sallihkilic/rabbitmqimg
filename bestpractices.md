@@ -80,7 +80,17 @@ Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde 
 <br>
 <p>Tüm clusterı durdurup yeniden başlatmak daha kolay olabilir; o halde başlatılan ilk node un trusted partition da olduğundan emin olmanız gerekmektedir.
 
+![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/2023-03-17%2001_12_15-.png?raw=true)
+<br>
+<h3 style=color:#902550;font-size:20px;>
+<strong>5. PARTITION İŞLEME STRATEJİLERİ</strong><h3>
+<br><br>
 
+<p> RabbitMQ ayrıca network partition ile otomatik olarak ilgilenmek için 3 farklı mod sunar;  </p>
+<li><code>pause-minority</code></li>
+<li><code>pause-if-all-down</code></li>
+<li><code>autoheal</code></li>
+<li>Varsayılan davranışı <code>ignore</code> modu olarak adlandırılır.</li>
 
 
 
