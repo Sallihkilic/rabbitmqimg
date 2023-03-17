@@ -44,9 +44,14 @@ Bir partiton oluşmuşsa Management UI, overview sayfasında uyarıyı gösterec
 
 <p> <u>Quorum queues</u> majority tarafta  yeni bir lider seçecektir. Quorum queues minority tarafındaki replikalar artık ilerleme kaydetmeyecek (yeni mesaj kabul etme,tüketicilere iletme vb.) tüm bu işler yeni lider tarafından yapılacaktır. </p>
 
+![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/image-asset.png?raw=true)
+
 <p> <u>Classic mirrored queues</u> partition boyunca bölünmüş olanlar, partitionun her iki tarafında birer lider olacak ve yine her iki tarafta bağımsız hareket edecek. </p>
 
 <p><code>pause_minority</code> gibi bir <u>partition işleme stratejisi </u>kullanılmak üzere yapılandırılmadığı sürece network connectivity geri yüklendikten sonra bile bölünme devam edecektir.</p>
+<br>
+<br>
+<p>Optimum performans elde etmek için kuyruklarınızın her zaman olabildiğince kısa olduğundan emin olun. Daha uzun kuyruklar daha fazla işlem yükü getirir. Optimum performans için sıraların her zaman 0 civarında kalmasını öneririz.</p>
 
 ![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/federated-queue.gif?raw=true)
 
