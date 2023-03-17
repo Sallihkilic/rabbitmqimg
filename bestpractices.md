@@ -52,3 +52,70 @@ Bir partiton oluşmuşsa Management UI, overview sayfasında uyarıyı gösterec
 <h3 style=color:#902550;>
 <strong>3.  SUSPEND VE RESUME'UN NEDEN OLDUĞU PARTITIONLAR</strong><h3>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+<p style=font-size:20px;><u>Yukarıda anlatılan konuyu özetlemek gerekirse;</u></p>
+
+<li><b> En Son Kararlı Sürümü Kullanın </b> <br>
+Clusterınızda RabbitMQ'nun en son kararlı sürümünü kullanmanız önerilir. En son sürüm, hata düzeltmeleri, güvenlik yamaları ve performans iyileştirmeleri içerir. Sisteminizdeki diğer bileşenlerle uyumlu kalmasını sağlamak için RabbitMQ clusterınızı güncel tutmanız da önemlidir.</li>
+
+<br>
+<br>
+<li><b> Clusterınızı High Availability için Tasarlayın </b> <br>
+RabbitMQ clusterınızı tasarlarken High Availabilityi göz önünde bulundurmanız önemlidir. Yüksek düzeyde kullanılabilir bir cluster, bir veya daha fazla node un arızalanmasına direnebilir ve çalışmaya devam edebilir. High Availability elde etmek için, RabbitMQ'yu clusterdaki nodes arasında queues and exchanges leri çoğaltacak şekilde yapılandırabilirsiniz. Bu, bir node başarısız olursa, clusterdaki diğer nodeların mesajları işlemeye devam edebilmesini sağlar.
+</li>
+
+<br>
+<br>
+
+<li><b>Load balancer kullanın</b> <br>
+Bir load balancer, gelen trafiği clusterdaki birden çok RabbitMQ node una  dağıtabilir. Bu, tek bir node un performans sorunlarına yol açabilecek trafiğe boğulmamasını sağlamaya yardımcı olur. Ek olarak, bir load balancer bir node un ne zaman başarısız olduğunu algılayabilir ve trafiği cluster da kalan nodelara yönlendirebilir.</li>
+
+<br>
+<br>
+
+<li><b>Kaynak Sınırlarını Yapılandırın</b><br>
+Çok fazla CPU, bellek veya disk alanı tüketmemelerini sağlamak için RabbitMQ nodelerinin kaynak sınırlarını yapılandırmak önemlidir. Kaynak limitleri belirleyerek, bir node un clusterdaki diğer nodeların performansını etkilemesini önleyebilirsiniz. Ek olarak, kaynak limitleri, nodeların çökmesine neden olabilecek out-of-memory hatalarını önlemeye yardımcı olabilir.</li>
+
+<br>
+<br>
+
+<li><b>Clusterınızı İzleyin (Monitor)</b><br>
+RabbitMQ clusterınızı izlemek, kararlı kalmasını ve iyi performans göstermesini sağlamak için çok önemlidir. CPU kullanımı, memory kullanımı, disk kullanımı ve mesaj çıkışı gibi ölçümleri izlemelisiniz. Bu ölçümleri görselleştirmek ve sorunlar olduğunda sizi uyarmak için Prometheus ve Grafana gibi izleme araçları kullanılabilir.</li>
+
+<br>
+<br>
+
+<li><b>Backup Your Data</b><br>
+RabbitMQ clusterınızdaki verileri düzenli olarak yedeklemeniz önemlidir. Bu, bir node arızalanırsa kayıp verileri kurtarabilmenizi sağlar. RabbitMQ, rabbitmqctl aracı gibi verileri yedeklemek ve geri yüklemek için araçlar sağlar.</li>
+
+<br>
+<br>
+
+<li><b>Clusterınızı Test Edin</b><br>
+RabbitMQ clusterınızı üretime dağıtmadan önce kapsamlı bir şekilde test etmeniz önemlidir. Test, üretim trafiğini etkilemeden önce tüm yapılandırma sorunlarının veya performans darboğazlarının belirlenmesine yardımcı olabilir. Clusterınızı yüksek trafik hacimleri ve node arızaları gibi çeşitli senaryolar altında test etmelisiniz.
+</li>
+
+
+<br><br><br>
+<p>Bu best practiceleri izleyerek RabbitMQ clusterının sabit kalmasını ve iyi performans göstermesini sağlayabilirsiniz. Clusterı high availability için tasarlamanız, bir load balancer kullanmanız, kaynak limitlerini yapılandırmanız, clusterı izlemeniz, datayı yedeklemeniz ve clusterınızı üretime dağıtmadan önce test etmeniz önemlidir.
