@@ -46,7 +46,7 @@ Bir partiton oluşmuşsa Management UI, overview sayfasında uyarıyı gösterec
 
 ![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/image-asset.png?raw=true)
 
-<p> __Classic mirrored queues__ partition boyunca bölünmüş olanlar, partitionun her iki tarafında birer lider olacak ve yine her iki tarafta bağımsız hareket edecek. </p>
+<p> <u>Classic mirrored queues</u> partition boyunca bölünmüş olanlar, partitionun her iki tarafında birer lider olacak ve yine her iki tarafta bağımsız hareket edecek. </p>
 
 <p><code>pause_minority</code> gibi bir <u>partition işleme stratejisi </u>kullanılmak üzere yapılandırılmadığı sürece network connectivity geri yüklendikten sonra bile bölünme devam edecektir.</p>
 <br>
@@ -55,7 +55,7 @@ Bir partiton oluşmuşsa Management UI, overview sayfasında uyarıyı gösterec
 
 ![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/federated-queue.gif?raw=true)
 
-![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/federated-queue.gif?raw=true)
+![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/federated-queue-symmetric.gif?raw=true)
 
 <h3 style=color:#902550;font-size:20px;>
 <strong>3. SUSPEND VE RESUME'UN NEDEN OLDUĞU PARTITIONLAR</strong><h3>
@@ -80,7 +80,7 @@ Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde 
 <br>
 <p>Tüm clusterı durdurup yeniden başlatmak daha kolay olabilir; o halde başlatılan ilk node un trusted partition da olduğundan emin olmanız gerekmektedir.
 
-![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/2023-03-17%2001_12_15-.png?raw=true)
+<br>
 <br>
 <h3 style=color:#902550;font-size:20px;>
 <strong>5. PARTITION İŞLEME STRATEJİLERİ</strong><h3>
@@ -106,6 +106,8 @@ Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde 
 
 <h2 style=color:red;font-size:25px;><storng>DİĞER BEST PRACTICES</strong><h2>
 <BR>
+
+![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/2023-03-17%2001_12_15-.png?raw=true)
 <li><b> En Son Kararlı Sürümü Kullanın </b> <br>
 Clusterınızda RabbitMQ'nun en son kararlı sürümünü kullanmanız önerilir. En son sürüm, hata düzeltmeleri, güvenlik yamaları ve performans iyileştirmeleri içerir. Sisteminizdeki diğer bileşenlerle uyumlu kalmasını sağlamak için RabbitMQ clusterınızı güncel tutmanız da önemlidir.</li>
 
@@ -148,4 +150,4 @@ RabbitMQ clusterınızı üretime dağıtmadan önce kapsamlı bir şekilde test
 
 
 <br><br><br>
-<p>Bu best practiceleri izleyerek RabbitMQ clusterının sabit kalmasını ve iyi performans göstermesini sağlayabilirsiniz. Clusterı high availability için tasarlamanız, bir load balancer kullanmanız, kaynak limitlerini yapılandırmanız, clusterı izlemeniz, datayı yedeklemeniz ve clusterınızı üretime dağıtmadan önce test etmeniz önemlidir.
+<p>Bu best practiceleri izleyerek RabbitMQ clusterının sabit kalmasını ve iyi performans göstermesini sağlayabilirsiniz. Clusterı high availability için tasarlamanız, bir load balancer kullanmanız, kaynak limitlerini yapılandırmanız, clusterı izlemeniz, datayı yedeklemeniz ve clusterınızı canlı ortama taşımadan önce test etmeniz önemlidir.
