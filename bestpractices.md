@@ -29,9 +29,9 @@
 ![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/2023-03-16%2007_45_47-Clustering%20and%20Network%20Partitions%20—%20RabbitMQ.png?raw=true)
 
 
-<p style=font-size:15px;>The HTTP API will return partition information for each node under partitions in GET /api/nodes endpoints.
+<p style=font-size:15px;>HTTP API partition bilgisini <code>GET /api/nodes</code> endpointlerinde <code> partitionların </code>  altındaki her node için döndürür.
 
-The management UI will show a warning on the overview page if a partition has occurred.
+Bir partiton oluşmuşsa Management UI, overview sayfasında uyarıyı gösterecektir. 
 
  </p>
 
@@ -39,6 +39,16 @@ The management UI will show a warning on the overview page if a partition has oc
 <strong>2. NETWORK PARTITION SIRASINDA DAVRANIŞ</strong><h3>
 <br>
 
-<p> </p>
+<p> Bir network partition sırasında, cluster iki veya daha fazla tarafta bağımsız olarak gelişebilir ve her iki tarafta diğerinin crashed olduğunu düşünür. Bu senaryo split-brain olarak bilinir. Queues,bindings,exchanges ayrı ayrı oluşturulabilir veya silinebilir.</p>
 
+
+<p> <u>Quorum queues</u> majority tarafta  yeni bir lider seçecektir. Quorum queues minority tarafındaki replikalar artık ilerleme kaydetmeyecek (yeni mesaj kabul etme,tüketicilere iletme vb.) tüm bu işler yeni lider tarafından yapılacaktır. </p>
+
+<p> <u>Classic mirrored queues</u> partition boyunca bölünmüş olanlar, partitionun her iki tarafında birer lider olacak ve yine her iki tarafta bağımsız hareket edecek. </p>
+
+<p><code>pause_minority</code> gibi bir <u>partition işleme stratejisi </u>kullanılmak üzere yapılandırılmadığı sürece network connectivity geri yüklendikten sonra bile bölünme devam edecektir.</p>
+
+
+<h3 style=color:#902550;>
+<strong>3.  SUSPEND VE RESUME'UN NEDEN OLDUĞU PARTITIONLAR</strong><h3>
 
