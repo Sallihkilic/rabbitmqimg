@@ -46,7 +46,7 @@ Bir partiton oluşmuşsa Management UI, overview sayfasında uyarıyı gösterec
 
 ![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/image-asset.png?raw=true)
 
-<p> <u>Classic mirrored queues</u> partition boyunca bölünmüş olanlar, partitionun her iki tarafında birer lider olacak ve yine her iki tarafta bağımsız hareket edecek. </p>
+<p> __Classic mirrored queues__ partition boyunca bölünmüş olanlar, partitionun her iki tarafında birer lider olacak ve yine her iki tarafta bağımsız hareket edecek. </p>
 
 <p><code>pause_minority</code> gibi bir <u>partition işleme stratejisi </u>kullanılmak üzere yapılandırılmadığı sürece network connectivity geri yüklendikten sonra bile bölünme devam edecektir.</p>
 <br>
@@ -104,8 +104,8 @@ Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde 
 
 
 
-<p style=font-size:20px;><u>Yukarıda anlatılan konuyu özetlemek gerekirse ve kalan konuları da belirtmek gerekirse;</u></p>
-
+<h2 style=color:red;font-size:25px;><storng>DİĞER BEST PRACTICES</strong><h2>
+<BR>
 <li><b> En Son Kararlı Sürümü Kullanın </b> <br>
 Clusterınızda RabbitMQ'nun en son kararlı sürümünü kullanmanız önerilir. En son sürüm, hata düzeltmeleri, güvenlik yamaları ve performans iyileştirmeleri içerir. Sisteminizdeki diğer bileşenlerle uyumlu kalmasını sağlamak için RabbitMQ clusterınızı güncel tutmanız da önemlidir.</li>
 
@@ -136,7 +136,7 @@ RabbitMQ clusterınızı izlemek, kararlı kalmasını ve iyi performans göster
 <br>
 <br>
 
-<li><b>Backup Your Data</b><br>
+<li><b>Verilerinizi yedekleyin</b><br>
 RabbitMQ clusterınızdaki verileri düzenli olarak yedeklemeniz önemlidir. Bu, bir node arızalanırsa kayıp verileri kurtarabilmenizi sağlar. RabbitMQ, rabbitmqctl aracı gibi verileri yedeklemek ve geri yüklemek için araçlar sağlar.</li>
 
 <br>
