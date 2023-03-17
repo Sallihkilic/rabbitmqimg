@@ -1,13 +1,13 @@
-<h1><strong>RabbitMq  Best Practices <strong></h1><br>
+<h1 style=font-size:30p;><strong>RabbitMq  Best Practices <strong></h1><br>
 
 ![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/baslik.png?raw=true)
 <br>
 
-<h2 style=color:red;><storng>Clustering and Network Partitions</strong><h2>
+<h2 style=color:red;font-size:25px;><storng>Clustering and Network Partitions</strong><h2>
 <br>
 <p style=font-size:15px;>Küme üyeleri arasındaki ağ bağlantısı hatalarının, veri tutarlılığı ve müşteri işlemleri için kullanılabilirlik (CAP teoreminde olduğu gibi) üzerinde etkisi vardır. Farklı uygulamaların tutarlılık konusunda farklı gereksinimleri olduğundan ve kullanılamamayı farklı bir ölçüde tolere edebildiğinden, farklı bölüm işleme stratejileri (bu stratejileri aşağıda açıklanacaktır bkz.) mevcuttur.</p>
 
-<h3 style=color:#902550;>
+<h3 style= font-size:20px;color:#902550;>
 <strong>1. AĞ BÖLÜMLERİNİ ALGILAMA</strong><h3>
 <br>
 
@@ -35,7 +35,7 @@ Bir partiton oluşmuşsa Management UI, overview sayfasında uyarıyı gösterec
 
  </p>
 
-<h3 style=color:#902550;>
+<h3 style=color:#902550;font-size:20px;>
 <strong>2. NETWORK PARTITION SIRASINDA DAVRANIŞ</strong><h3>
 <br>
 
@@ -57,16 +57,28 @@ Bir partiton oluşmuşsa Management UI, overview sayfasında uyarıyı gösterec
 
 ![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/federated-queue.gif?raw=true)
 
-<h3 style=color:#902550;>
-<strong>3.  SUSPEND VE RESUME'UN NEDEN OLDUĞU PARTITIONLAR</strong><h3>
+<h3 style=color:#902550;font-size:20px;>
+<strong>3. SUSPEND VE RESUME'UN NEDEN OLDUĞU PARTITIONLAR</strong><h3>
+<br>
+<p> 'Network' partitionlarına atıfta bulunsak da, gerçekten bir partition, bir clusterın farklı nodelarının, herhangi bir node arızası olmadan iletişimin kesilebildiği  bir durumdur. Network arızalarına ek olarak, işletim sisteminin tamamının askıya alınması ve devam ettirilmesi, çalışan cluster nodelarına karşı kullanıldığında da partitiona neden olabilir. çünkü askıya alınan node kendisini başarısız veya hatta durmuş olarak kabul etmeyecektir, ancak clusterdaki diğer nodelar bunu dikkate alacaktır.</p><br>
 
+<p> RabbitMQ clusterlarını sanallaştırılmış ortamlarda veya containerlarda çalıştırmakta sorun yoktur ancak <u><b>VM'lerin çalışırken suspended olmadığından emin olun.</b> </u></p>
 
+<p>
+Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde olacaktır - askıya alınan node, diğer nodeları mutlaka çökmüş olarak görmeyecek, ancak clusterın geri kalanı tarafından çökmüş olarak görülecektir. Bunun, <code>pause_minority </code> modu için belirli etkileri vardır.</p>
+<br><br>
 
-
-
-
-
-
+<h3 style=color:#902550;font-size:20px;>
+<strong>4. SPLIT-BRAIN 'DEN KURTULMAK</strong><h3>
+<br>
+<br>
+<p>Split-brainden kurtulmak için ilk olarak en güvenilir partition seçilir. Bu partition sistemin durumu (şema,mesajlar..) için kullanılacak authority olacaktır; diğer bölümlerde meydana gelen tüm değişiklikler kaybolacaktır.</p>
+<br>
+<p>Sonrasında diğer partitionlardaki tüm nodelar durdurulur ve yeniden başlatılır. Clustera yeniden katıldıklarında güvenilen partitiondan state i geri yükleyecekler. </p>
+<br>
+<p>Son olarak uyarının temizlenmesi için güvenilen partitondaki nodeları yeniden başlatılması gerekmektedir.</p>
+<br>
+<p>Tüm clusterı durdurup yeniden başlatmak daha kolay olabilir; o halde başlatılan ilk node un trusted partition da olduğundan emin olmanız gerekmektedir.
 
 
 
@@ -82,7 +94,7 @@ Bir partiton oluşmuşsa Management UI, overview sayfasında uyarıyı gösterec
 
 
 
-<p style=font-size:20px;><u>Yukarıda anlatılan konuyu özetlemek gerekirse;</u></p>
+<p style=font-size:20px;><u>Yukarıda anlatılan konuyu özetlemek gerekirse ve kalan konuları da belirtmek gerekirse;</u></p>
 
 <li><b> En Son Kararlı Sürümü Kullanın </b> <br>
 Clusterınızda RabbitMQ'nun en son kararlı sürümünü kullanmanız önerilir. En son sürüm, hata düzeltmeleri, güvenlik yamaları ve performans iyileştirmeleri içerir. Sisteminizdeki diğer bileşenlerle uyumlu kalmasını sağlamak için RabbitMQ clusterınızı güncel tutmanız da önemlidir.</li>
