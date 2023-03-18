@@ -119,12 +119,14 @@ Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde 
 <br>
 
 <p><code>Pause_if_all_down</code> için kullanılan örnek <ins>config snippet</ins> </p>
+<br>
+
     cluster_partition_handling = pause_if_all_down
 
-    ## Recovery strategy. Can be either 'autoheal' or 'ignore'
+        ## Recovery strategy. Can be either 'autoheal' or 'ignore'
     cluster_partition_handling.pause_if_all_down.recover = ignore
-
-    ## Node names to check
+    
+        ## Node names to check
     cluster_partition_handling.pause_if_all_down.nodes.1 = rabbit@myhost1
     cluster_partition_handling.pause_if_all_down.nodes.2 = rabbit@myhost2
 
