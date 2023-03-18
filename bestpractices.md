@@ -136,7 +136,19 @@ Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde 
 <strong>6.HANGİ MOD SEÇİLMELİ ?</strong></h3>
 <br>
 
+![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/image%20for%20md%20file.png?raw=true)
+<br>
+<p>RabbitMQ'nun network partitionlar ile  başa çıkmasına izin vermenin otomatik olarak değiş tokuşlarla (trade off ) olduğunu anlamak önemlidir.</p>
 
+<p>Giriş bölümünde belirtildiği gibi, RabbitMQ clusterlarını genellikle güvenilir olmayan bağlantılar üzerinden bağlamak için <ins>Federation </ins>veya <ins>Shovel</ins> pluginlerini tercih edin.</p>
+
+<p>Bununla birlikte, operatorün hangi modun uygun olup olmayacağını belirlemesine yardımcı olacak bazı yönergeler aşağıda verilmiştir:</p>
+
+<li><code>ignor</code>:Network güvenilirliği pratik olarak mümkün olan en yüksek olduğunda ve node kullanılabilirliği en önemli olduğunda kullanın.</li>
+
+<li><code>pause_minority</code>:Tek bir region da racklar veya kullanılabilir zones arasında clustering yaparken uygundur ve Nodeların (zones) çoğunluğunu bir kerede kaybetme olasılığının çok düşük olduğu kabul edilir. Bu mod lost nodes geri geldiğinde otomatik olarak kurtarma yeteneği için bir miktar kullanılabilirliği trade off eder.</li>
+
+<li><code>autoheal</code>:Nodelar arasındaki veri tutarlılığından çok service sürekliliği ile ilgilenildiğinde kullanın.</li>
 
 <br>
 
