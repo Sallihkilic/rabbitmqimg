@@ -8,7 +8,7 @@
 <p>Küme üyeleri arasındaki ağ bağlantısı hatalarının, veri tutarlılığı ve müşteri işlemleri için kullanılabilirlik (CAP teoreminde olduğu gibi) üzerinde etkisi vardır. Farklı uygulamaların tutarlılık konusunda farklı gereksinimleri olduğundan ve kullanılamamayı farklı bir ölçüde tolere edebildiğinden, farklı bölüm işleme stratejileri (bu stratejileri aşağıda açıklanacaktır bkz.) mevcuttur.</p>
 
 <h3 style= font-size:20px;color:#902550;>
-<strong>1. AĞ BÖLÜMLERİNİ ALGILAMA</strong><h3>
+<strong>1. AĞ BÖLÜMLERİNİ ALGILAMA</strong></h3>
 <br>
 
 <p >Bir node başka bir node ile belli bir süre (defalut 60 sec) iletişim kuramazsa onun kapalı olup olmadğını belirler. Eğer iki düğüm tekrar iletişime geçerse ikisi de birbirinin kapalı olduğunu düşünür. Nodes partition olduğunu belirleyecektir. RabbitMQ logu aşağıdaki gibidir.</p>
@@ -18,7 +18,7 @@
 
 <p > Partition'lar loglar, HTTP API veya CLI command lar ile belirleneblir.</p>
 
-<p > <i> <code>rabbitmq-diagnostics cluster_status</code> </i>normalde partitonlar için boş bir liste gösterir.
+<p > <i> <code>rabbitmq-diagnostics cluster_status</code> </i>normalde partitonlar için boş bir liste gösterir.</p>
 
 ![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/2023-03-16%2007_21_33-Clustering%20and%20Network%20Partitions%20—%20RabbitMQ.png?raw=true)
 
@@ -36,7 +36,7 @@ Bir partiton oluşmuşsa Management UI, overview sayfasında uyarıyı gösterec
  </p>
 
 <h3 style=color:#902550;font-size:20px;>
-<strong>2. NETWORK PARTITION SIRASINDA DAVRANIŞ</strong><h3>
+<strong>2. NETWORK PARTITION SIRASINDA DAVRANIŞ</strong></h3>
 <br>
 
 <p> Bir network partition sırasında, cluster iki veya daha fazla tarafta bağımsız olarak gelişebilir ve her iki tarafta diğerinin crashed olduğunu düşünür. Bu senaryo split-brain olarak bilinir. Queues,bindings,exchanges ayrı ayrı oluşturulabilir veya silinebilir.</p>
@@ -58,7 +58,7 @@ Bir partiton oluşmuşsa Management UI, overview sayfasında uyarıyı gösterec
 ![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/federated-queue-symmetric.gif?raw=true)
 
 <h3 style=color:#902550;font-size:20px;>
-<strong>3. SUSPEND VE RESUME'UN NEDEN OLDUĞU PARTITIONLAR</strong><h3>
+<strong>3. SUSPEND VE RESUME'UN NEDEN OLDUĞU PARTITIONLAR</strong></h3>
 <br>
 <p> 'Network' partitionlarına atıfta bulunsak da, gerçekten bir partition, bir clusterın farklı nodelarının, herhangi bir node arızası olmadan iletişimin kesilebildiği  bir durumdur. Network arızalarına ek olarak, işletim sisteminin tamamının askıya alınması ve devam ettirilmesi, çalışan cluster nodelarına karşı kullanıldığında da partitiona neden olabilir. çünkü askıya alınan node kendisini başarısız veya hatta durmuş olarak kabul etmeyecektir, ancak clusterdaki diğer nodelar bunu dikkate alacaktır.</p><br>
 
@@ -69,7 +69,7 @@ Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde 
 <br><br>
 
 <h3 style=color:#902550;font-size:20px;>
-<strong>4. SPLIT-BRAIN 'DEN KURTULMAK</strong><h3>
+<strong>4. SPLIT-BRAIN 'DEN KURTULMAK</strong></h3>
 <br>
 <br>
 <p>Split-brainden kurtulmak için ilk olarak en güvenilir partition seçilir. Bu partition sistemin durumu (şema,mesajlar..) için kullanılacak authority olacaktır; diğer bölümlerde meydana gelen tüm değişiklikler kaybolacaktır.</p>
@@ -78,12 +78,12 @@ Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde 
 <br>
 <p>Son olarak uyarının temizlenmesi için güvenilen partitondaki nodeları yeniden başlatılması gerekmektedir.</p>
 <br>
-<p>Tüm clusterı durdurup yeniden başlatmak daha kolay olabilir; o halde başlatılan ilk node un trusted partition da olduğundan emin olmanız gerekmektedir.
+<p>Tüm clusterı durdurup yeniden başlatmak daha kolay olabilir; o halde başlatılan ilk node un trusted partition da olduğundan emin olmanız gerekmektedir.</p>
 
 <br>
 <br>
 <h3 style=color:#902550;font-size:20px;>
-<strong>5. PARTITION İŞLEME STRATEJİLERİ</strong><h3>
+<strong>5. PARTITION İŞLEME STRATEJİLERİ</strong></h3>
 <br><br>
 
 <p> RabbitMQ ayrıca network partition ile otomatik olarak ilgilenmek için 3 farklı mod sunar;  </p>
@@ -106,7 +106,7 @@ Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde 
 
 <p>Winning partition en çok istemcinin bağlı olduğudur. (yada bir beraberlik durumu varsa en çok node a sahip olan ve hala node durumunda beraberlikk durummu varsa partitionlardan biri belirsiz şekilde seçilir.)</p>
 
-<p><ins>Configuration file</ins> da <code>rabbit</code> uygulaması için <code>cluster_partition_handling</code> parametresini şu şekilde ayarlayarak her iki modu da etkinleştirebilirsiniz;<p>
+<p><ins>Configuration file</ins> da <code>rabbit</code> uygulaması için <code>cluster_partition_handling</code> parametresini şu şekilde ayarlayarak her iki modu da etkinleştirebilirsiniz;</p>
 <br>
 <li> <code>autoheal</code> </li>
 <li> <code>pause_minority</code> </li>
@@ -133,7 +133,7 @@ Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde 
 <br>
 
 <h3 style=color:#902550;font-size:20px;>
-<strong>6.HANGİ MOD SEÇİLMELİ ?</strong><h3>
+<strong>6.HANGİ MOD SEÇİLMELİ ?</strong></h3>
 <br>
 
 
@@ -142,7 +142,7 @@ Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde 
 
 
 
-<h2 style=color:red;font-size:25px;><storng>DİĞER BEST PRACTICES</strong><h2>
+<h2 style=color:red;font-size:25px;><strong>DİĞER BEST PRACTICES</strong></h2>
 <BR>
 
 ![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/2023-03-17%2001_12_15-.png?raw=true)
