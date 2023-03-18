@@ -91,14 +91,48 @@ Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde 
 <li><code>pause-if-all-down</code></li>
 <li><code>autoheal</code></li>
 <li>Varsayılan davranışı <code>ignore</code> modu olarak adlandırılır.</li>
+<br>
+
+<p>RabbitMQ pause-minority modunda diğer nodeların down olduğunu gördükten sonra kendilerini minority (toplam düğüm sayısının yarısından az veya eşit) olarak belirleyen cluster nodelarını otomatik olarak duraklatır. Bu nedenle CAP teoreminden kullanılabilirliğe göre partition tolerancesı seçer. Bu bir network partition durumunda,tek bir partitiondaki nodeların  çalışmaya devam etmesini sağlar. Minority nodes, bir partition başlar başlamaz duraklayacak ve partition sona erdiğinde yeniden başlayacaktır. Bu konfigürasyon spllit-braini önler ve bu sebeple tutarsızlık olmadan network partition dan otomatik olarak kurtarabilir.</p>
 
 
 
+![alt text](https://github.com/Sallihkilic/rabbitmqimg/blob/master/images/cap%20theorem.png?raw=true)
+<br>
 
+<p>Pause-if-all-down modunda, RabbitMQ listelenen nodelardan herhangi birine ulaşamayan cluster nodelarını otomatik olarak duraklatır.Başka bir şekilde açıklamak gerekirse; RabbitMQ'nun bir cluster node unu duraklatabilmesi için listelenen tüm nodeların down olması gerekir. Bu pause-minority moduna yakındır ancak <b> bir yöneticinin context e güvenmek yerine hangi nodeları tercih edeceğine karar vermesine olanak tanır.</b> Örneğin, cluster rack A'daki iki node ve rack B'deki iki node den oluşuyorsa ve racklar arasında ki bağlantı kaybolursa pause-minority modu tüm nodeları duraklatır. Pause-if-all-down modunda ise yönetici rack A'daki iki node u listelediyse, yalnızca B'deki nodeları duraklatır. Listelenen nodeların bir partition ın  her iki tarafına bölünmesinin mümkün olduğunu unutmayın; Böyle bir durumda hiç bir node duraksamaz. Bu nedenle partitiondan nasıl recover olacağını gösteren ek <code> ignore/autoheal </code>  modları  vardır.  </p>
+<br>
+<p> Autoheal modunda bir partition meydana geldiği kabul edilirse RabbitMQ winning partitiona otamatik olarak karar verecektir ve winning partitionda olmayan tüm nodları yeniden başlatacaktır. <code>pause_minority</code> modundan  farklı olarak bir partiton başladığında değil, bittiğinde etkili olur.</p>
 
+<p>Winning partition en çok istemcinin bağlı olduğudur. (yada bir beraberlik durumu varsa en çok node a sahip olan ve hala node durumunda beraberlikk durummu varsa partitionlardan biri belirsiz şekilde seçilir.)</p>
 
+<p><u>Configuration file</u> da <code>rabbit</code> uygulaması için <code>cluster_partition_handling</code> parametresini şu şekilde ayarlayarak her iki modu da etkinleştirebilirsiniz;<p>
+<br>
+<li> <code>autoheal</code> </li>
+<li> <code>pause_minority</code> </li>
+<li> <code> pause_if_all_down</code> </li>
 
+<p> <code> Pause_if_all_down </code> modu kullanılıyorsa ek parametreler gereklidir;  </p>
+<br>
+<li> <code>nodes</code>: Duraklatma için hangi nodes mecvut olmaması için kullanılır. </li>
+<li> <code>recover</code>: recover eylemi içindir, <code>ignore</code> yada <code>autoheal</code> olabilir. </li>
+<br>
 
+<p><code>Pause_if_all_down</code> için kullanılan örnek <u>config snippet</u> </p>
+    cluster_partition_handling = pause_if_all_down
+
+    ## Recovery strategy. Can be either 'autoheal' or 'ignore'
+    cluster_partition_handling.pause_if_all_down.recover = ignore
+
+    ## Node names to check
+    cluster_partition_handling.pause_if_all_down.nodes.1 = rabbit@myhost1
+    cluster_partition_handling.pause_if_all_down.nodes.2 = rabbit@myhost2
+
+<br>
+
+<h3 style=color:#902550;font-size:20px;>
+<strong>6.HANGİ MOD SEÇİLMELİ ?</strong><h3>
+<br>
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
