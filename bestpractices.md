@@ -111,14 +111,14 @@ Suspended ve resume'un neden olduğu partitionlar asymmetrical olma eğiliminde 
 <li> <code>autoheal</code> </li>
 <li> <code>pause_minority</code> </li>
 <li> <code> pause_if_all_down</code> </li>
-
+<br>
 <p> <code> Pause_if_all_down </code> modu kullanılıyorsa ek parametreler gereklidir;  </p>
 <br>
 <li> <code>nodes</code>: Duraklatma için hangi nodes mecvut olmaması için kullanılır. </li>
 <li> <code>recover</code>: recover eylemi içindir, <code>ignore</code> yada <code>autoheal</code> olabilir. </li>
 <br>
 
-<p><code>Pause_if_all_down</code> için kullanılan örnek <u>config snippet</u> </p>
+<p><code>Pause_if_all_down</code> için kullanılan örnek <ins>config snippet</ins> </p>
     cluster_partition_handling = pause_if_all_down
 
     ## Recovery strategy. Can be either 'autoheal' or 'ignore'
